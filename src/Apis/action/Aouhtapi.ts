@@ -1,9 +1,9 @@
 
 "use server";
 
-import { cookies } from "next/headers";
+
 import { userData } from "./../../app/(Auht)/Register/page";
-import { loginData } from "@/app/(Auht)/Login/page";
+ 
 
 export async function userRegister(data: userData) {
   try {

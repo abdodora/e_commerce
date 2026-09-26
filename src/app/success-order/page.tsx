@@ -39,7 +39,7 @@ export default function OrderSuccessPage() {
         <div className="space-y-3 pt-2">
           {/* زر التوجيه إلى طلباتي */}
           <Link
-            href="/orders" // أو المسار الخاص بصفحة الطلبات عندك
+            href="/allorders" // أو المسار الخاص بصفحة الطلبات عندك
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm text-sm"
           >
             <svg
