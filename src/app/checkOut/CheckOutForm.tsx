@@ -433,7 +433,6 @@ export default function CheckOutForm({ cartId }: { cartId: string }) {
         console.log(payload)
         if (payload?.status === 'success' && payload?.session?.url) {
           window.location.href = payload.session.url
-                    query.invalidateQueries({ queryKey: ['GetCart'] });
 
         } else {
           toast.add({
