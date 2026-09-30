@@ -326,7 +326,7 @@ import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/toast'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery ,useQueryClient} from '@tanstack/react-query'
 import { Check, MapPin, Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -357,7 +357,7 @@ export default function CheckOutForm({ cartId }: { cartId: string }) {
   const [isNewAddress, setIsNewAddress] = useState(false)
 
   const router = useRouter()
-
+  const query = useQueryClient();
   // 1. جلب بيانات السلة
   const { data: cartResponse, isLoading: isCartLoading } = useQuery<CartRespons>({
     queryKey: ['GetCart'],
@@ -421,6 +421,7 @@ export default function CheckOutForm({ cartId }: { cartId: string }) {
             description: 'Order created successfully',
           })
           router.push('/success-order')
+          query.invalidateQueries({ queryKey: ['GetCart'] });
         } else {
           toast.add({
             type: 'error',
@@ -432,6 +433,8 @@ export default function CheckOutForm({ cartId }: { cartId: string }) {
         console.log(payload)
         if (payload?.status === 'success' && payload?.session?.url) {
           window.location.href = payload.session.url
+                    query.invalidateQueries({ queryKey: ['GetCart'] });
+
         } else {
           toast.add({
             type: 'error',
